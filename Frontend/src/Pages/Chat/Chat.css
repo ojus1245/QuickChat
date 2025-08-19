@@ -1,0 +1,33 @@
+.chat-frame{
+    height:100vh;
+    background: linear-gradient(#596AFF,#383699);
+    display: grid;
+    place-items: center;
+        
+}
+
+.container{
+    width:80%;
+    max-width:1100px;
+    height:85vh; 
+    background-color: #fff;
+    border-radius:2%;
+    display:grid;
+    grid-template-columns: 1fr 2fr 1fr;
+  overflow-y:hidden;
+    
+    
+}
+.loading{
+  color: white;
+  font-size: 50px;
+}
+
+@media (max-width:900px ) {
+  .chat-frame{
+    display:flex
+  }
+  .loading{
+    font-size: 30px;
+  }
+}

@@ -1,0 +1,123 @@
+.rs{
+    background-color: #001030;
+    color: white;
+    /* display:flex;
+    flex-direction: column;
+    justify-content: center; */
+    overflow-y:scroll
+    
+}
+.profile-img{
+   border-radius: 50%;
+    width: 100px;
+    height:90px;
+    position: relative;
+    left: 80px;
+    top: 27px;
+    margin-bottom: 25px;
+}
+
+.rs-profile h3{
+    text-align: center;   
+}
+
+ .bio {
+    font-size: 12px;
+    text-align:center;
+    color:#9f9f9f;
+    margin:5px;
+}
+hr{
+    margin:10px 0px;
+    border-color: #ffffff50;
+}
+.rs-media p{
+    text-align:center;
+    margin:10px 0px;
+}
+.media-box {
+    max-height:250px;
+    display:grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    overflow-y:scroll; 
+    padding:6px;
+    gap:5px;
+}
+
+.media-img{
+    width:80px;
+    border-radius: 4px;
+    cursor:pointer;
+}
+
+/* .rs .logout{
+position:absolute;
+color: white;
+width:200px;
+border-radius:20px;
+height:35px;
+left:77%;
+background:rgb(0, 76, 255);
+bottom:80px;
+transform:translatex(-50%);
+font-size:medium;
+} */
+
+.rs-footer {
+  padding: 10px 0;
+  background-color: #001030;
+  display: flex;
+  justify-content: center;
+}
+
+.logout {
+  color: white;
+  width: 200px;
+  border-radius: 20px;
+  height: 35px;
+  background: rgb(0, 76, 255);
+  font-size: medium;
+  border: none;
+  cursor: pointer;
+  transition: background 0.3s ease;
+  margin-top: auto;
+}
+
+.logout:hover {
+  background: rgb(0, 60, 200);
+}
+ .rs-footer-bottom {
+    display: flex;
+  flex-direction: column;
+  height: 85vh; 
+  background-color: #001030;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.rs-footer-bottom {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+  min-height: 200px; /* fallback for small screens */
+  height: 85vh;
+  background-color: #001030;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+/* Responsive layout for smaller screens */
+@media (max-width: 600px) {
+  .rs-footer-bottom {
+    height: auto;
+    min-height: 150px;
+    padding: 16px;
+  }
+
+  .logout {
+    width: 100%;
+    max-width: 300px;
+    font-size: large;
+  }
+}
