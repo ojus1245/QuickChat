@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useContext } from "react";
-import "./Chat-Box.css";
+import "./Chat-box.css";
 import assets from "../../../assets/assets";
 import { AppContext } from "../../../context/AppContext";
 import {
