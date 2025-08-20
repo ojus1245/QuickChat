@@ -1,10 +1,16 @@
-// backend/index.js
 const express = require("express");
 const cors = require("cors");
 const { cloudinary } = require("./cloudinary");
 
 const app = express();
-app.use(cors());
+
+// ✅ Configure CORS to allow only your frontend domain
+app.use(cors({
+  origin: "https://chatapp-gravitek.netlify.app",
+  methods: ["GET", "POST"],
+  credentials: true
+}));
+
 app.use(express.json());
 
 // Route for generating signature for signed upload
@@ -12,7 +18,6 @@ app.post("/get-signature", (req, res) => {
   const { public_id, folder } = req.body;
   const timestamp = Math.round(Date.now() / 1000);
 
-  // MUST match exactly what will be sent in FormData
   const paramsToSign = {
     folder,
     overwrite: "true",
@@ -24,7 +29,6 @@ app.post("/get-signature", (req, res) => {
     paramsToSign,
     process.env.CLOUDINARY_API_SECRET
   );
-  
 
   res.json({
     timestamp,
