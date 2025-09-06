@@ -90,7 +90,7 @@ const Chatbox = () => {
       const image=e.target.files[0];
       if(image){
 
-        const sigRes = await fetch("http://localhost:5000/get-signature", {
+        const sigRes = await fetch("https://chatapp-gravitek.onrender.com", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ public_id: `chat-images/${uid}`,folder:"chat-images", }),
