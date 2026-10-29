@@ -25,9 +25,35 @@ const Login = () => {
 
     <form  onSubmit={handleSubmit} className="login-form">
       <h2>{currentstate}</h2>
-      {currentstate ==="Sign Up"? <input type="text" onChange={(e)=>{setUserName(e.target.value)}} placeholder='username' className="form-input" required/> : null}
-      <input type="email" placeholder='Email' onChange={(e)=>{setEmail(e.target.value)}} className="form-input"/>
-      <input type="password" placeholder='password' onChange={(e)=>{setPassword(e.target.value)}} className="form-input"  />
+      {currentstate ==="Sign Up"? (
+        <input 
+          type="text" 
+          value={userName}
+          onChange={(e)=>{setUserName(e.target.value)}} 
+          placeholder='username' 
+          className="form-input" 
+          autoComplete="username"
+          required
+        />
+      ) : null}
+      <input 
+        type="email" 
+        value={email}
+        placeholder='Email' 
+        onChange={(e)=>{setEmail(e.target.value)}} 
+        className="form-input"
+        autoComplete="email"
+        required
+      />
+      <input 
+        type="password" 
+        value={password}
+        placeholder='password' 
+        onChange={(e)=>{setPassword(e.target.value)}} 
+        className="form-input"
+        autoComplete={currentstate === 'Sign Up' ? "new-password" : "current-password"}
+        required
+      />
       <button type='submit'>{currentstate==='Sign Up'?"Register":"Login"}</button>
       <div className="login-term">
         {currentstate==='Sign Up'?<input type="checkbox" name="" id="" />:null}

@@ -122,14 +122,20 @@ const Chatbox = () => {
     try {
       const image = e.target.files[0];
       if (image) {
-        const sigRes = await fetch("https://chatapp-gravitek.onrender.com", {
+        const backendUrl = import.meta.env.VITE_BACKEND_URL || "https://chatapp-gravitek.onrender.com";
+        const messageImageId = `chat-images/${uid}_${Date.now()}`;
+        const sigRes = await fetch(`${backendUrl}/get-signature`, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({
-            public_id: `chat-images/${uid}`,
+            public_id: messageImageId,
             folder: "chat-images",
           }),
         });
+
+        if (!sigRes.ok) {
+          throw new Error("Failed to get signature from backend server");
+        }
 
         const { timestamp, signature, apiKey, cloudName } = await sigRes.json();
 
@@ -138,7 +144,7 @@ const Chatbox = () => {
         formData.append("api_key", apiKey);
         formData.append("timestamp", timestamp);
         formData.append("signature", signature);
-        formData.append("public_id", `chat-images/${uid}`);
+        formData.append("public_id", messageImageId);
         formData.append("folder", "chat-images");
         formData.append("overwrite", "true");
 

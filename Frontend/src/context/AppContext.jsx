@@ -21,6 +21,11 @@ const AppContextProvider = (props) => {
     try {
       const userRef = doc(db, "users", uid);
       const userSnap = await getDoc(userRef);
+      if (!userSnap.exists()) {
+        console.warn("User document does not exist in Firestore for UID:", uid);
+        navigate("/Profile");
+        return;
+      }
       const userData = userSnap.data();
       setUserData(userData);
       if (userData.profileImage && userData.username) {
