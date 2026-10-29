@@ -4,9 +4,23 @@ const { cloudinary } = require("./cloudinary");
 
 const app = express();
 
-// ✅ Configure CORS to allow only your frontend domain
+//  Configure CORS to allow frontend domains
+const allowedOrigins = [
+  "https://chatapp-gravitek.netlify.app",
+  "https://chat-app-cd37a.web.app",
+  "https://chat-app-cd37a.firebaseapp.com",
+  "http://localhost:5173",
+  "http://localhost:3000"
+];
+
 app.use(cors({
-  origin: "https://chatapp-gravitek.netlify.app",
+  origin: (origin, callback) => {
+    // allow requests with no origin (like mobile apps, curl, server-to-server)
+    if (!origin || allowedOrigins.includes(origin)) {
+      return callback(null, true);
+    }
+    return callback(null, true); // Alternatively allow all or callback(new Error("CORS blocked"))
+  },
   methods: ["GET", "POST"],
   credentials: true
 }));

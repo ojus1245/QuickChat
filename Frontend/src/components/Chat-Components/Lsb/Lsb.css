@@ -119,3 +119,12 @@ img.pfp{
  .ls-list.border div span {
   color: #07fff3;
 }
+.chat-unread-count {
+  background: red;
+  color: white;
+  font-size: 12px;
+  padding: 4px 7px;
+  border-radius: 50%;
+  min-width: 18px;
+  text-align: center;
+}

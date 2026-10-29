@@ -11,13 +11,13 @@ import { useNavigate } from "react-router-dom";
 const ProfileUpdate = () => {
   const [image, setImage] = React.useState(null);
   const [uploadedUrl, setUploadedUrl] = React.useState("");
-  const [existingImageUrl, setExistingImageUrl] = React.useState(""); // ✅ Previous image
+  const [existingImageUrl, setExistingImageUrl] = React.useState(""); //  Previous image
   const [name, setName] = React.useState("");
   const [bio, setBio] = React.useState("");
 
   const navigate = useNavigate();
 
-  // 🧠 Fetch user profile data on mount
+  //  Fetch user profile data on mount
   React.useEffect(() => {
     const fetchProfile = async () => {
       const auth = getAuth();
@@ -58,8 +58,9 @@ const ProfileUpdate = () => {
 
     if (image) {
       try {
-        // 🔐 Get signature from backend
-        const sigRes = await fetch("http://localhost:5000/get-signature", {
+        //  Get signature from backend
+        const backendUrl = import.meta.env.VITE_BACKEND_URL || "http://localhost:5000";
+        const sigRes = await fetch(`${backendUrl}/get-signature`, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ public_id: `profiles/${uid}`,folder:"profiles" }),
@@ -96,7 +97,7 @@ const ProfileUpdate = () => {
       imageUrl = "https://res.cloudinary.com/dpuxwdbpt/image/upload/v1753800525/avatar_icon_taiau6.png";
     }
 
-    // ✅ Update Firestore
+    //  Update Firestore
     try {
       const userRef = doc(db, "users", uid);
       await updateDoc(userRef, {
@@ -113,7 +114,7 @@ const ProfileUpdate = () => {
     }
   };
 
-  // 🖼️ Image logic: selected > existing > default
+  //  Image logic: selected > existing > default
   const displayImage = image
     ? URL.createObjectURL(image)
     : existingImageUrl || assets.avatar_icon;
